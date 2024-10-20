@@ -1,0 +1,17 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: argo-test3-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: argo-test3
+  template:
+    metadata:
+      labels:
+        app: argo-test3
+    spec:
+      containers:
+        - image: nginx:latest
+          name: argo-test3-container
