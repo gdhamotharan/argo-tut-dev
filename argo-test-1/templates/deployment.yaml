@@ -1,17 +1,18 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: argo-test2-deployment
+  name: {{ .Values.appName }}-deployment
+  namespace: {{ .Values.appns }}
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: argo-test2
+      app: {{ .Values.appName }}
   template:
     metadata:
       labels:
-        app: argo-test2
+        app: {{ .Values.appName }}
     spec:
       containers:
-        - image: nginx:latest
-          name: argo-test2-container
+        - image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          name: {{ .Values.appName }}-container
